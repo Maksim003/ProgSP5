@@ -1,0 +1,105 @@
+@startuml
+class com.example.progsp5.Main {
+- Stage primaryStage
+- BorderPane rootLayout
+- {static} ObservableList<Document> documentsData
+~ {static} File file
++ void start(Stage)
++ void stop()
+- void initRootLayout()
++ void showDocumentOverview()
++ boolean showDocEditDialog(Document)
++ boolean showDocAddDialog(Document)
++ ObservableList<Document> getDocumentsData()
++ {static} void main(String[])
+}
+class com.example.progsp5.Model.Document {
+- StringProperty name
+- IntegerProperty numberOfDoc
+- StringProperty category
+- StringProperty type
+- StringProperty status
+- ObjectProperty<LocalDate> date
++ String getName()
++ StringProperty nameProperty()
++ void setName(String)
++ int getNumberOfDoc()
++ IntegerProperty numberOfDocProperty()
++ void setNumberOfDoc(int)
++ String getCategory()
++ StringProperty categoryProperty()
++ void setCategory(String)
++ String getType()
++ StringProperty typeProperty()
++ void setType(String)
++ String getStatus()
++ StringProperty statusProperty()
++ void setStatus(String)
++ LocalDate getDate()
++ ObjectProperty<LocalDate> dateProperty()
++ void setDate(LocalDate)
+}
+class com.example.progsp5.Controller.MainController {
+- ResourceBundle resources
+- URL location
+- Button addButton
+- AnchorPane anchorPane
+- AnchorPane anchorPane1
+- AnchorPane anchorPane2
+- ButtonBar buttonBar
+- Label categoryLabel
+- Button changeButton
+- TableColumn<Document,String> columnName
+- TableColumn<Document,Integer> columnNumber
+- Label dateLabel
+- Button deleteButton
+- GridPane gridPane
+- Label labelInfo
+- Label nameLabel
+- Label numberLabel
+- SplitPane splitPane
+- Label statusLabel
+- TableView<Document> tableView
+- Label typeLabel
+- Main main
+~ void initialize()
++ void setMain(Main)
+- void showDocDetails(Document)
+~ void deleteDocument(ActionEvent)
+- void addDocument()
+- void editDocument()
+}
+class com.example.progsp5.Model.DateUtil {
+- {static} String DATE_PATTERN
+- {static} DateTimeFormatter DATE_FORMATTER
++ {static} String format(LocalDate)
++ {static} LocalDate parse(String)
++ {static} boolean validDate(String)
+}
+class com.example.progsp5.Controller.EditController {
+- ResourceBundle resources
+- URL location
+- TextField category
+- TextField date
+- Button editButton
+- Button exitButton
+- TextField name
+- TextField number
+- TextField status
+- TextField type
+- Stage dialogStage
+- Document document
+- boolean okClicked
+~ void initialize()
+- boolean isInputValid()
++ void setDialogStage(Stage)
++ void setDoc(Document)
++ void addDoc(Document)
++ boolean isOkClicked()
+- void ok()
+- void cancel()
+}
+
+
+javafx.application.Application <|-- com.example.progsp5.Main
+@enduml
